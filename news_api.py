@@ -18,13 +18,14 @@ def get_news(keyword, days):
     :param days: Days to search back
     """
     newsapi = NewsApiClient(api_key=os.getenv('API_KEY'))
-    searchdate = date.today() - timedelta(days=1)
+    searchdate = date.today() - timedelta(days=days)
 
-    articles = newsapi.get_everything(qintitle = keyword,
+    articles = newsapi.get_everything(qintitle = f"{keyword} AND NOT offer AND NOT deal",
+    
                                       from_param = date.isoformat(searchdate),
                                       to = (searchdate + timedelta(days = days)).isoformat(),
                                       language="en",
-                                      sort_by="relevancy",
+                                      sort_by="publishedAt",
                                       page_size = 100)
 
     return articles['articles']
