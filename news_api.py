@@ -20,7 +20,7 @@ def get_news(keyword, days):
     newsapi = NewsApiClient(api_key=os.getenv('API_KEY'))
     searchdate = date.today() - timedelta(days=1)
 
-    articles = newsapi.get_everything(q = keyword,
+    articles = newsapi.get_everything(qintitle = keyword,
                                       from_param = date.isoformat(searchdate),
                                       to = (searchdate + timedelta(days = days)).isoformat(),
                                       language="en",
