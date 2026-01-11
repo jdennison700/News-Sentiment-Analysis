@@ -86,21 +86,19 @@ def plot_sentiment_by_date_grouped_bar(scores_df, keyword):
 
     plt.show()
 
-def main():
+def main(keyword):
     """
     Main function
     """
-    search = input("Enter a search term: ")
     days_searched = 7
-    response = get_news(search, days_searched)
+    response = get_news(keyword, days_searched)
     if response == []:
         print("No articles found")
         exit(0)
-        return
     scores = get_sentiment(response)
     scores_df = analyse_sentiment(scores)
-    plot_sentiment_by_date_grouped_bar(scores_df = scores_df, keyword=search)
+    plot_sentiment_by_date_grouped_bar(scores_df = scores_df, keyword=keyword)
 
 if __name__ == '__main__':
 
-    main()
+    main(keyword='Pittsburgh Steelers')
